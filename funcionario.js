@@ -24,7 +24,7 @@ connection.connect((err) => {
 // Middleware para lidar com dados codificados no corpo da solicitação
 funcionario.use(express.urlencoded({ extended: true }));
 funcionario.use(express.json());
- 
+
 //METODO GET = MOSTRAR
 funcionario.get('/funcionarios', (req, res) => {
     //Consultar o BD
@@ -40,7 +40,7 @@ funcionario.get('/funcionarios', (req, res) => {
 });
 
 //METODO POST = INSERIR
-funcionario.get('/funcionario-cadastro', (req, res) => {
+funcionario.get('/funcionarios/cadastro', (req, res) => {
   const {}
   //Inserir dados no BD
   const sql = 'SELECT * FROM funcionario';
