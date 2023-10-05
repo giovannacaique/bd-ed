@@ -39,7 +39,7 @@ empresa.get('/empresas', (req, res) => {
     });
 });
 
-/* DADOS FUNCIONARIOS
+/* DADOS EMPRESAS
 {
     "nome_empresa": "Empresa Fictícia",
     "cnpj_cpf": 12345678901234,
