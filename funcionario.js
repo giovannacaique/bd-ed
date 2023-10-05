@@ -51,15 +51,16 @@ funcionario.get('/funcionarios', (req, res) => {
     "data_admissao": "2023-10-02",
     "car_horaria": 120,
     "sexo": "MASCULINO",
+    "id_empresa": 4,
     "descricao": "TESTE DE CADASTRO"
 }
 */
 //METODO POST = INSERIR
-funcionario.post('/funcionarios/cadastro', (req, res) => {
-  const { nome, func_status, turno, datatime_registro, cpf, rg, cart_trabalho, data_admissao, car_horaria, sexo, descricao} = req.body;
+funcionario.post('/cadastro', (req, res) => {
+  const { nome, func_status, turno, datatime_registro, cpf, rg, cart_trabalho, data_admissao, car_horaria, sexo, id_empresa, descricao} = req.body;
   //Inserir dados no BD
-  const sql = 'INSERT INTO funcionario (nome, func_status, turno, datatime_registro, cpf, rg, cart_trabalho, data_admissao, car_horaria, sexo, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  connection.query(sql, [nome, func_status, turno, datatime_registro, cpf, rg, cart_trabalho, data_admissao, car_horaria, sexo, descricao], (err, result) => {
+  const sql = 'INSERT INTO funcionario (nome, func_status, turno, datatime_registro, cpf, rg, cart_trabalho, data_admissao, car_horaria, sexo, id_empresa, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  connection.query(sql, [nome, func_status, turno, datatime_registro, cpf, rg, cart_trabalho, data_admissao, car_horaria, sexo, id_empresa, descricao], (err, result) => {
     if (err) {
       console.error('Erro ao inserir resgistros: ' + err.message);
       res.status(500).json({ error: 'Erro ao inserir resgistros' });
@@ -71,7 +72,7 @@ funcionario.post('/funcionarios/cadastro', (req, res) => {
 });
 
 /* Método PUT = Atualização
-Nessa parte ":id" basta colocar diretamente o id desejado */
+Nessa parte ":id" basta colocar diretamente o id desejado 
 app.put('/api/clientes/:id', (req, res) => {
   const { id } = req.params;
   const { nome, cpf, email, idade } = req.body;
@@ -89,7 +90,7 @@ app.put('/api/clientes/:id', (req, res) => {
 });
 
 /* Método DELETE = Excluir
-Nessa parte ":id" basta colocar diretamente o id desejado */
+Nessa parte ":id" basta colocar diretamente o id desejado 
 app.delete('/api/clientes/:id', (req, res) => {
   const { id } = req.params;
   // Excluir o registro na tabela "usuario" pelo ID
@@ -108,7 +109,7 @@ app.delete('/api/clientes/:id', (req, res) => {
           }
       }
   });
-});
+});*/
 
 // Iniciar o servidor
 funcionario.listen(port, () => {
