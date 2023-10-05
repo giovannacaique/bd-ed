@@ -50,7 +50,7 @@ empresa.get('/empresas', (req, res) => {
 }
 */
 //METODO POST = INSERIR
-empresa.post('/empresas/cadastro', (req, res) => {
+empresa.post('/cadastro', (req, res) => {
   const { nome_empresa, cnpj_cpf, razao_social, quantidade_funcionarios, email, senha } = req.body;
   //Inserir dados no BD
   const sql = 'INSERT INTO empresa (nome_empresa, cnpj_cpf, razao_social, quantidade_funcionarios, email, senha) VALUES (?, ?, ?, ?, ?, ?)';
@@ -66,13 +66,13 @@ empresa.post('/empresas/cadastro', (req, res) => {
 });
 
 /* Método PUT = Atualização
-Nessa parte ":id" basta colocar diretamente o id desejado */
-app.put('/api/clientes/:id', (req, res) => {
-    const { id } = req.params;
-    const { nome, cpf, email, idade } = req.body;
+Nessa parte ":id_empresa" basta colocar diretamente o id desejado */
+empresa.put('/atualizar/:id_empresa', (req, res) => {
+    const { id_empresa } = req.params;
+    const { nome_empresa, cnpj_cpf, razao_social, quantidade_funcionarios, email, senha } = req.body;
     // Atualizar usando o query
-    const sql = 'UPDATE cliente SET nome = ?, cpf = ?, email = ?, idade = ? WHERE id = ?';
-    connection.query(sql, [nome, cpf, email, idade, id], (err, result) => {
+    const sql = 'UPDATE empresa SET nome_empresa = ?, cnpj_cpf = ?, razao_social = ?, quantidade_funcionarios = ?, email = ?, senha = ? WHERE id_empresa = ?';
+    connection.query(sql, [nome_empresa, cnpj_cpf, razao_social, quantidade_funcionarios, email, senha, id_empresa], (err, result) => {
         if (err) {
             console.error('Erro ao atualizar registro: ' + err.message);
             res.status(500).json({ error: 'Erro ao atualizar registro' });
@@ -84,12 +84,12 @@ app.put('/api/clientes/:id', (req, res) => {
 });
 
 /* Método DELETE = Excluir
-Nessa parte ":id" basta colocar diretamente o id desejado */
-app.delete('/api/clientes/:id', (req, res) => {
-    const { id } = req.params;
-    // Excluir o registro na tabela "usuario" pelo ID
-    const sql = 'DELETE FROM cliente WHERE id = ?';
-    connection.query(sql, [id], (err, result) => {
+Nessa parte ":id_empresa" basta colocar diretamente o id desejado */
+empresa.delete('/deletar/:id_empresa', (req, res) => {
+    const { id_empresa } = req.params;
+    // Excluir o registro na tabela "empresa" pelo ID
+    const sql = 'DELETE FROM empresa WHERE id_empresa = ?';
+    connection.query(sql, [id_empresa], (err, result) => {
         if (err) {
             console.error('Erro ao excluir registro: ' + err.message);
             res.status(500).json({ error: 'Erro ao excluir registro' });
